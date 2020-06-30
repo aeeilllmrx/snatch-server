@@ -58,6 +58,12 @@ app.get('/get_wordlist', (req, res) => {
   res.send({ data: words });
 });
 
+app.get('/check_db', (req, res) => {
+  pool.query("SELECT * FROM game")
+    .then(res => console.log(res.rows[0]))
+    .catch(e => console.error(e.stack))
+  });
+
 io.on('connection', function(socket){
   pool
     .query(buildStateQuery(gameId))
