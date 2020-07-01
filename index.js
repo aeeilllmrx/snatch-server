@@ -52,7 +52,7 @@ app.get('/get_wordlist', (req, res) => {
 
 app.get('/check_db', (req, res) => {
   pool.query("SELECT * FROM game")
-    .then(res => res.send({ data: res.rows[0] }))
+    .then(res => console.log(res.rows[0]))
     .catch(e => console.error(e.stack))
   });
 
