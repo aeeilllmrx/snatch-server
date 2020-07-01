@@ -15,16 +15,8 @@ const pool = new Pool({
 
 pool.connect();
 
-pool.query("CREATE TABLE IF NOT EXISTS game \
-  (id integer primary key, \
-  squares varchar[], \
-  p1words varchar[], \
-  p2words varchar[])")
-
 // TODO make rooms based on game id
 gameId = "103";
-pool.query("INSERT INTO game (id) VALUES (103) \
-  ON CONFLICT DO NOTHING")
 
 const buildFlipQuery = (data, gameId) => {
   squares = Object.values(data['squares'])
