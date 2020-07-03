@@ -8,10 +8,19 @@ const { Pool } = require('pg')
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  ssl: {
-    rejectUnauthorized: false
-  }
+  ssl: false
 })
+
+/*
+const pool = new Pool({
+  user: '',
+  host: 'localhost',
+  database: 'snatch',
+  password: '',
+  port: 5432,
+  ssl: false
+});
+*/
 
 pool.connect();
 
