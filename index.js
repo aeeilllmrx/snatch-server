@@ -1,7 +1,6 @@
 var app = require('express')();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-var port = process.env.PORT || 5000;
 var fs = require('fs');
 
 const { Pool } = require('pg')
@@ -13,10 +12,10 @@ const pool = new Pool({
 
 /*
 const pool = new Pool({
-  user: '',
+  user: 'postgres',
   host: 'localhost',
   database: 'snatch',
-  password: '',
+  password: 'postgres',
   port: 5432,
   ssl: false
 });
@@ -55,7 +54,9 @@ http.listen(port, function(){
 });
 
 app.get('/get_wordlist', (req, res) => {
+  console.log("in get wordlist");
   const words = fs.readFileSync("./sowpods.txt", "utf8").split("\n");
+  console.log("words length: " + words.length);
   res.send({ data: words });
 });
 
