@@ -17,7 +17,7 @@ app.get('/get_wordlist', (req, res) => {
 });
 
 /* ----------Postgres connection logic--------- */
-const prod = false;
+const prod = true;
 let pool = undefined;
 if (prod) {
   pool = new Pool({
