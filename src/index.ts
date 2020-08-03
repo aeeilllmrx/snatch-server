@@ -1,33 +1,16 @@
 import express from "express"
 import fs from "fs"
-import { createServer } from "http"
-import socketIO from "socket.io"
 import Knex from "knex"
 
 const app = express()
-const http = createServer(app)
-const io = socketIO(http)
+const socket = require("socket.io") // must be required apparently
+const server = app.listen(5000, function () {
+  console.log("listening on *:" + port)
+})
+const io = socket(server)
 const port = process.env.PORT || 5000
 
 /* ---------- Routes ------------------- */
-app.use("*", (req, res, next) => {
-  res.header(
-    "Access-Control-Allow-Origin",
-    "https://snatch-328e83.netlify.app/"
-  )
-  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-  res.header(
-    "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, X-Auth-Token, Accept"
-  )
-  res.header("Access-Control-Allow-Credentials", "true")
-  next()
-})
-
-app.listen(port, () => {
-  console.log("listening on *:" + port)
-})
-
 app.get("/get_wordlist", (req, res) => {
   const words = fs.readFileSync("./sowpods.txt", "utf8").split("\n")
   res.send({ data: words })
