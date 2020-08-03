@@ -17,11 +17,11 @@ const fs_1 = __importDefault(require("fs"));
 const knex_1 = __importDefault(require("knex"));
 const app = express_1.default();
 const socket = require("socket.io"); // must be required apparently
-const server = app.listen(5000, function () {
+const port = process.env.PORT || 5000;
+const server = app.listen(port, function () {
     console.log("listening on *:" + port);
 });
 const io = socket(server);
-const port = process.env.PORT || 5000;
 /* ---------- Routes ------------------- */
 app.get("/get_wordlist", (req, res) => {
     const words = fs_1.default.readFileSync("./sowpods.txt", "utf8").split("\n");
