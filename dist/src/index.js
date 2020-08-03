@@ -23,7 +23,7 @@ const io = socket_io_1.default(http);
 const port = process.env.PORT || 5000;
 /* ---------- Routes ------------------- */
 app.use("*", (req, res, next) => {
-    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Origin", "https://snatch-328e83.netlify.app/");
     res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, X-Auth-Token, Accept");
     res.header("Access-Control-Allow-Credentials", "true");
