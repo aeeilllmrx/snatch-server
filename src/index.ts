@@ -10,6 +10,14 @@ const io = socketIO(http)
 const port = process.env.PORT || 5000
 
 /* ---------- Routes ------------------- */
+app.all("*", function (req, res, next) {
+  var origin = req.get("origin")
+  res.header("Access-Control-Allow-Origin", origin)
+  res.header("Access-Control-Allow-Headers", "X-Requested-With")
+  res.header("Access-Control-Allow-Headers", "Content-Type")
+  next()
+})
+
 app.listen(port, () => {
   console.log("listening on *:" + port)
 })
