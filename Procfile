@@ -1,1 +1,1 @@
-web: npm prod:serve
+web: npm run start
