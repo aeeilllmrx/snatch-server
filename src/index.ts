@@ -10,14 +10,22 @@ const io = socketIO(http)
 const port = process.env.PORT || 5000
 
 /* ---------- Routes ------------------- */
+app.use("*", (req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*")
+  res.header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
+  res.header(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, X-Auth-Token, Accept"
+  )
+  res.header("Access-Control-Allow-Credentials", "true")
+  next()
+})
+
 app.listen(port, () => {
   console.log("listening on *:" + port)
 })
 
 app.get("/get_wordlist", (req, res) => {
-  res.set("Access-Control-Allow-Origin", "*")
-  res.set("Access-Control-Allow-Credentials", "true")
-  res.set("Access-Control-Allow-Headers", "Content-Type")
   const words = fs.readFileSync("./sowpods.txt", "utf8").split("\n")
   res.send({ data: words })
 })
